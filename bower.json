@@ -1,0 +1,23 @@
+{
+  "name": "async_fn",
+  "version": "0.1.0",
+  "homepage": "https://github.com/s0ber/async_fn",
+  "authors": [
+    "Sergey Shishkalov <sergeyshishkalov@gmail.com>"
+  ],
+  "description": "One-method library for calling asynchronous functions one by one in a queue",
+  "main": "build/async_fn.min.js",
+
+  "dependencies": {
+    "jquery": "",
+    "underscore": ""
+  },
+
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
