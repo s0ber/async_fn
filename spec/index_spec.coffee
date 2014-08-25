@@ -46,11 +46,11 @@ describe 'AsyncFn', ->
     it 'calls @callback when @fn is resolved', ->
       anotherFn = sinon.spy()
 
-      @asyncFn.done anotherFn
+      @asyncFn.done(anotherFn)
       @asyncFn.call()
       expect(@asyncFn.callback).to.be.not.called
       @dfd.resolve().then =>
-        expect(@asyncFn.callback).to.be.calledOnce
+        expect(@asyncFn.isCalled).to.be.true
 
   describe '.addToCallQueue', ->
     beforeEach ->

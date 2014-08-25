@@ -14,7 +14,8 @@ class window.AsyncFn
     @fn().always =>
       @isCalled = true
       @dfd.resolve()
-      @callback() if @callback
+      @constructor.setImmediate =>
+        @callback() if @callback
 
   @addToCallQueue: (fn) ->
     asyncFn = new AsyncFn(fn)
@@ -22,7 +23,7 @@ class window.AsyncFn
     if @currentFn?
       @currentFn.done => asyncFn.call()
     else
-      @setImmediate -> asyncFn.call()
+      asyncFn.call()
 
     @currentFn = asyncFn
 
