@@ -1,6 +1,7 @@
 class window.AsyncFn
 
   constructor: (asyncFn) ->
+    @dfd = new $.Deferred()
     @fn = asyncFn
 
   done: (callback) ->
@@ -12,6 +13,7 @@ class window.AsyncFn
     return if @isCalled
     @fn().always =>
       @isCalled = true
+      @dfd.resolve()
       @callback() if @callback
 
   @addToCallQueue: (fn) ->
@@ -20,7 +22,7 @@ class window.AsyncFn
     if @currentFn?
       @currentFn.done => asyncFn.call()
     else
-      asyncFn.call()
+      @setImmediate -> asyncFn.call()
 
     @currentFn = asyncFn
 

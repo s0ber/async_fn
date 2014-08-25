@@ -52,9 +52,9 @@ describe 'AsyncFn', ->
       @dfd.resolve().then =>
         expect(@asyncFn.callback).to.be.calledOnce
 
-  describe '.newQueueFn', ->
-    it 'calls callbacks in a queue one by one', (done) ->
-      asyncFn1 = sinon.spy(=>
+  describe '.addToCallQueue', ->
+    beforeEach ->
+      @asyncFn1 = sinon.spy(=>
         dfd = new $.Deferred()
         setTimeout ->
           dfd.resolve()
@@ -62,7 +62,7 @@ describe 'AsyncFn', ->
         dfd.promise()
       )
 
-      asyncFn2 = sinon.spy(=>
+      @asyncFn2 = sinon.spy(=>
         dfd = new $.Deferred()
         setTimeout ->
           dfd.resolve()
@@ -70,7 +70,7 @@ describe 'AsyncFn', ->
         dfd.promise()
       )
 
-      asyncFn3 = sinon.spy(=>
+      @asyncFn3 = sinon.spy(=>
         dfd = new $.Deferred()
         setTimeout ->
           dfd.resolve()
@@ -78,18 +78,37 @@ describe 'AsyncFn', ->
         dfd.promise()
       )
 
-      AsyncFn.addToCallQueue asyncFn1
-      AsyncFn.addToCallQueue asyncFn2
-      AsyncFn.addToCallQueue asyncFn3
+    it 'calls callbacks in a queue one by one', (done) ->
+      AsyncFn.addToCallQueue @asyncFn1
+      AsyncFn.addToCallQueue @asyncFn2
+      AsyncFn.addToCallQueue @asyncFn3
 
-      expect(asyncFn2).to.be.not.called
-      expect(asyncFn3).to.be.not.called
+      expect(@asyncFn2).to.be.not.called
+      expect(@asyncFn3).to.be.not.called
 
-      setTimeout ->
-        expect(asyncFn1).to.be.calledOnce
-        expect(asyncFn2).to.be.calledOnce
-        expect(asyncFn3).to.be.calledOnce
-        expect(asyncFn1).to.be.calledBefore asyncFn2
-        expect(asyncFn2).to.be.calledBefore asyncFn3
+      setTimeout =>
+        expect(@asyncFn1).to.be.calledOnce
+        expect(@asyncFn2).to.be.calledOnce
+        expect(@asyncFn3).to.be.calledOnce
+        expect(@asyncFn1).to.be.calledBefore @asyncFn2
+        expect(@asyncFn2).to.be.calledBefore @asyncFn3
+        done()
+      , 1500
+
+    it 'allows to add after call callbacks', (done) ->
+      @asyncFn1After = sinon.spy()
+      @asyncFn2After = sinon.spy()
+      @asyncFn3After = sinon.spy()
+
+      AsyncFn.addToCallQueue(@asyncFn1).dfd.done @asyncFn1After
+      AsyncFn.addToCallQueue(@asyncFn2).dfd.done @asyncFn2After
+      AsyncFn.addToCallQueue(@asyncFn3).dfd.done @asyncFn3After
+
+      setTimeout =>
+        expect(@asyncFn1).to.be.calledBefore @asyncFn1After
+        expect(@asyncFn1After).to.be.calledBefore @asyncFn2
+        expect(@asyncFn2).to.be.calledBefore @asyncFn2After
+        expect(@asyncFn2After).to.be.calledBefore @asyncFn3
+        expect(@asyncFn3).to.be.calledBefore @asyncFn3After
         done()
       , 1500
