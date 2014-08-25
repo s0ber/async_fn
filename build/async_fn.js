@@ -1,7 +1,7 @@
-/*! async_fn (v0.1.0),
+/*! async_fn (v0.1.1),
  One-method library for calling asynchronous functions one by one in a queue,
  by Sergey Shishkalov <sergeyshishkalov@gmail.com>
- Sat Aug 23 2014 */
+ Mon Aug 25 2014 */
 (function() {
   var modules;
 
@@ -29,6 +29,7 @@
 (function() {
   window.AsyncFn = (function() {
     function AsyncFn(asyncFn) {
+      this.dfd = new $.Deferred();
       this.fn = asyncFn;
     }
 
@@ -46,6 +47,7 @@
       return this.fn().always((function(_this) {
         return function() {
           _this.isCalled = true;
+          _this.dfd.resolve();
           if (_this.callback) {
             return _this.callback();
           }
@@ -63,7 +65,9 @@
           };
         })(this));
       } else {
-        asyncFn.call();
+        this.setImmediate(function() {
+          return asyncFn.call();
+        });
       }
       return this.currentFn = asyncFn;
     };
