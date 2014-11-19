@@ -1,4 +1,4 @@
-/*! async_fn (v0.1.4),
+/*! async_fn (v0.1.5),
  One-method library for calling asynchronous functions one by one in a queue,
  by Sergey Shishkalov <sergeyshishkalov@gmail.com>
  Wed Nov 19 2014 */
