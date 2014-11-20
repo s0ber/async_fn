@@ -38,17 +38,14 @@ class window.AsyncFn
 
       func()
 
-    if window.addEventListener
-      window.addEventListener "message", onmessage, false
-    else
-      window.attachEvent "onmessage", onmessage
+    if window.addEventListener and window.postMessage
+      window.addEventListener 'message', onmessage, false
 
-    if window.postMessage
-      (func) ->
+      return (func) ->
         tail = tail.next = { func }
-        window.postMessage(ID, "*")
+        window.postMessage(ID, '*')
     else
-      (func) ->
+      return (func) ->
         setTimeout(func, 0)
 
 modula.export('async_fn', AsyncFn)
