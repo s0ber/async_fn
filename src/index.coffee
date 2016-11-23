@@ -1,5 +1,6 @@
-class window.AsyncFn
+$ = require('jquery')
 
+module.exports = class window.AsyncFn
   constructor: (asyncFn) ->
     @dfd = new $.Deferred()
     @fn = asyncFn
@@ -19,7 +20,7 @@ class window.AsyncFn
     asyncFn = new AsyncFn(fn)
 
     if @currentFn?
-      @currentFn.done => asyncFn.call()
+      @currentFn.done -> asyncFn.call()
     else
       asyncFn.call()
 
@@ -42,10 +43,8 @@ class window.AsyncFn
       window.addEventListener 'message', onmessage, false
 
       return (func) ->
-        tail = tail.next = { func }
+        tail = tail.next = {func}
         window.postMessage(ID, '*')
     else
       return (func) ->
         setTimeout(func, 0)
-
-modula.export('async_fn', AsyncFn)

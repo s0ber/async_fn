@@ -1,4 +1,5 @@
-AsyncFn = modula.require 'async_fn'
+$ = require 'jquery'
+AsyncFn = require '../src/index'
 
 describe 'AsyncFn', ->
   beforeEach ->
@@ -54,7 +55,7 @@ describe 'AsyncFn', ->
 
   describe '.addToCallQueue', ->
     beforeEach ->
-      @asyncFn1 = sinon.spy(=>
+      @asyncFn1 = sinon.spy(->
         dfd = new $.Deferred()
         setTimeout ->
           dfd.resolve()
@@ -62,7 +63,7 @@ describe 'AsyncFn', ->
         dfd.promise()
       )
 
-      @asyncFn2 = sinon.spy(=>
+      @asyncFn2 = sinon.spy(->
         dfd = new $.Deferred()
         setTimeout ->
           dfd.resolve()
@@ -70,7 +71,7 @@ describe 'AsyncFn', ->
         dfd.promise()
       )
 
-      @asyncFn3 = sinon.spy(=>
+      @asyncFn3 = sinon.spy(->
         dfd = new $.Deferred()
         setTimeout ->
           dfd.resolve()
