@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "author": "Sergey Shishkalov <sergeyshishkalov@gmail.com>",
   "description": "One-method library for calling asynchronous functions one by one in a queue",
+  "main": "build/async_fn.min.js",
   "devDependencies": {
     "chai": "^3.5.0",
     "coffee-loader": "^0.7.2",

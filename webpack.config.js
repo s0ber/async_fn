@@ -4,19 +4,23 @@ const UnminifiedWebpackPlugin = require('unminified-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
 
 const plugins = []
+const externals = []
 if (isProduction) {
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({minimize: true}),
     new UnminifiedWebpackPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', Infinity)
+    new webpack.ProvidePlugin({
+        $: "jquery"
+    })
   )
+
+  externals.push('jquery')
 }
 
 module.exports = {
   devtool: 'source-map',
   entry: {
-    async_fn: ['./src/index'],
-    vendor: ['jquery']
+    async_fn: ['./src/index']
   },
   output: {
     path: path.resolve('./build'),
@@ -37,6 +41,7 @@ module.exports = {
       }
     ]
   },
-  plugins: plugins
+  plugins: plugins,
+  externals: externals
 }
 
