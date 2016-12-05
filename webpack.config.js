@@ -8,12 +8,8 @@ const externals = []
 if (isProduction) {
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({minimize: true}),
-    new UnminifiedWebpackPlugin(),
-    new webpack.ProvidePlugin({
-        $: "jquery"
-    })
+    new UnminifiedWebpackPlugin()
   )
-
   externals.push('jquery')
 }
 
