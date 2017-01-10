@@ -1,7 +1,7 @@
 /*! async_fn (v0.1.6),
  One-method library for calling asynchronous functions one by one in a queue,
  by Sergey Shishkalov <sergeyshishkalov@gmail.com>
- Thu Nov 20 2014 */
+ Wed Jan 11 2017 */
 (function() {
   var modules;
 
@@ -76,8 +76,9 @@
       tail = head;
       ID = Math.random();
       onmessage = function(e) {
-        var func;
-        if (e.data.toString() !== ID.toString()) {
+        var data, func;
+        data = e.data || '';
+        if (data.toString() !== ID.toString()) {
           return;
         }
         head = head.next;
