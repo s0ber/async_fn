@@ -1,7 +1,7 @@
-/*! async_fn (v0.1.6),
+/*! async_fn (v0.1.7),
  One-method library for calling asynchronous functions one by one in a queue,
  by Sergey Shishkalov <sergeyshishkalov@gmail.com>
- Wed Jan 11 2017 */
+ Thu Jan 12 2017 */
 (function() {
   var modules;
 

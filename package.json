@@ -1,6 +1,6 @@
 {
   "name": "async_fn",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Sergey Shishkalov <sergeyshishkalov@gmail.com>",
   "description": "One-method library for calling asynchronous functions one by one in a queue",
   "devDependencies": {
