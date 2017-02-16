@@ -1,4 +1,4 @@
-$ = require('jquery')
+{$} = require('./libs')
 
 module.exports = class window.AsyncFn
   constructor: (asyncFn) ->

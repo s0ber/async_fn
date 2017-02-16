@@ -1,6 +1,6 @@
 {
   "name": "async_fn",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Sergey Shishkalov <sergeyshishkalov@gmail.com>",
   "description": "One-method library for calling asynchronous functions one by one in a queue",
   "main": "build/async_fn.min.js",
@@ -41,7 +41,9 @@
     "node": ">= 0.10"
   },
   "scripts": {
-    "build": "env NODE_ENV=production webpack",
+    "build": "npm run build-new && npm run build-deprecated",
+    "build-new": "env NODE_ENV=production webpack",
+    "build-deprecated": "env NODE_ENV=production DEPRECATED_JQUERY=1 webpack",
     "test": "karma start"
   },
   "license": "MIT",

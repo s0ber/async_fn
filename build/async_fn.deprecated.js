@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("jquery"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["jquery"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["AsyncFn"] = factory(require("jquery"));
+		exports["AsyncFn"] = factory();
 	else
-		root["AsyncFn"] = factory(root["jquery"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+		root["AsyncFn"] = factory();
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -147,23 +147,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var jquery;
 	
-	if (false) {
+	if (true) {
 	  module.exports = {
 	    $: window.$
 	  };
 	} else {
-	  jquery = __webpack_require__(3);
+	  jquery = require('jquery');
 	  module.exports = {
 	    $: jquery
 	  };
 	}
 
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }
 /******/ ])

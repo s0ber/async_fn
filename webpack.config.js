@@ -10,8 +10,15 @@ if (isProduction) {
     new webpack.optimize.UglifyJsPlugin({minimize: true}),
     new UnminifiedWebpackPlugin()
   )
+  plugins.push(new webpack.DefinePlugin({
+    'process.env': {
+      DEPRECATED_JQUERY: process.env.DEPRECATED_JQUERY ? 'true' : 'false'
+    }
+  }))
   externals.push('jquery')
 }
+
+const isDeprecated = process.env.DEPRECATED_JQUERY
 
 module.exports = {
   devtool: 'source-map',
@@ -20,7 +27,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('./build'),
-    filename: '[name].min.js',
+    filename: isDeprecated ? '[name].deprecated.min.js' : '[name].min.js',
     library: 'AsyncFn',
     libraryTarget: 'umd'
   },
