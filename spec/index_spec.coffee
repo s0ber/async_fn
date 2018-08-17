@@ -53,6 +53,11 @@ describe 'AsyncFn', ->
       @dfd.resolve().then =>
         expect(@asyncFn.isCalled).to.be.true
 
+  describe '.setImmediate', ->
+    it 'does not break on external message', (done) ->
+      window.postMessage(null, '*')
+      setTimeout(done, 100)
+
   describe '.addToCallQueue', ->
     beforeEach ->
       @asyncFn1 = sinon.spy(->

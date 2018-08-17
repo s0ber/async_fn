@@ -32,7 +32,7 @@ module.exports = class window.AsyncFn
     ID = Math.random()
 
     onmessage = (e) ->
-      return if e.data.toString() isnt ID.toString()
+      return if e.data?.toString() isnt ID.toString()
       head = head.next
       func = head.func
       delete head.func
