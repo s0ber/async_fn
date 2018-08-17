@@ -11,73 +11,73 @@
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
+
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/
+
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-/******/
+
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
-/******/
+
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
-/******/
+
+
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-/******/
+
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-/******/
+
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-/******/
+
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(1);
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var $;
-	
+
 	$ = __webpack_require__(2).$;
-	
+
 	module.exports = window.AsyncFn = (function() {
 	  function AsyncFn(asyncFn) {
 	    this.dfd = new $.Deferred();
 	    this.fn = asyncFn;
 	  }
-	
+
 	  AsyncFn.prototype.done = function(callback) {
 	    this.callback = callback;
 	    if (this.isCalled) {
 	      return this.callback();
 	    }
 	  };
-	
+
 	  AsyncFn.prototype.call = function() {
 	    if (this.isCalled) {
 	      return;
@@ -92,7 +92,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 	    })(this));
 	  };
-	
+
 	  AsyncFn.addToCallQueue = function(fn) {
 	    var asyncFn;
 	    asyncFn = new AsyncFn(fn);
@@ -105,15 +105,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    return this.currentFn = asyncFn;
 	  };
-	
+
 	  AsyncFn.setImmediate = (function() {
 	    var ID, head, onmessage, tail;
 	    head = {};
 	    tail = head;
 	    ID = Math.random();
 	    onmessage = function(e) {
-	      var func;
-	      if (e.data.toString() !== ID.toString()) {
+	      var func, ref;
+	      if (((ref = e.data) != null ? ref.toString() : void 0) !== ID.toString()) {
 	        return;
 	      }
 	      head = head.next;
@@ -135,18 +135,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 	    }
 	  })();
-	
+
 	  return AsyncFn;
-	
+
 	})();
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var jquery;
-	
+
 	if (true) {
 	  module.exports = {
 	    $: window.$
@@ -159,7 +159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
