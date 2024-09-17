@@ -18,8 +18,6 @@ if (isProduction) {
   externals.push('jquery')
 }
 
-const isDeprecated = process.env.DEPRECATED_JQUERY
-
 module.exports = {
   devtool: 'source-map',
   entry: {
@@ -27,7 +25,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('./build'),
-    filename: isDeprecated ? '[name].deprecated.min.js' : '[name].min.js',
+    filename: '[name].min.js',
     library: 'AsyncFn',
     libraryTarget: 'umd'
   },
