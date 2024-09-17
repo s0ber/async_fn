@@ -21,6 +21,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/npm/npm.git"
+    "url": "git+ssh://git@github.com/npm/npm.git"
   }
 }
