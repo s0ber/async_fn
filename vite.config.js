@@ -11,7 +11,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'addToAsyncQueue',
       // the proper extensions will be added
-      fileName: 'index',
+      fileName: 'async-fn',
     }
   },
   plugins: [

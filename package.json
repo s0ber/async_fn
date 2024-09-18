@@ -4,7 +4,7 @@
   "author": "Sergey Shishkalov <sergeyshishkalov@gmail.com>",
   "description": "One-function library for calling asynchronous functions one by one in a queue",
   "type": "module",
-  "main": "dist/index.umd.cjs",
+  "main": "dist/async-fn.umd.cjs",
   "types": "dist/index.d.ts",
   "files": [
     "/dist"
