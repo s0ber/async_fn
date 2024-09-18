@@ -1,24 +1,35 @@
 {
   "name": "async_fn",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0-rc2",
   "author": "Sergey Shishkalov <sergeyshishkalov@gmail.com>",
   "description": "One-function library for calling asynchronous functions one by one in a queue",
-  "main": "dist/index.umd.js",
+  "type": "module",
+  "main": "dist/index.umd.cjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.4",
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/jest": "^29.5.13",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-extended": "^4.0.2",
     "ts-node": "^10.9.2",
-    "vite": "^5.4.6"
+    "typescript": "^5.4.2",
+    "vite": "^5.4.6",
+    "vite-plugin-dts": "^4.2.1"
   },
   "engine": {
     "node": ">=20"
   },
   "scripts": {
     "build": "vite build",
-    "test": "jest"
+    "prepublishOnly": "npm run typecheck",
+    "test": "jest",
+    "typecheck": "tsc"
   },
   "license": "MIT",
   "repository": {
