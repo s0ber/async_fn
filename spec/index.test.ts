@@ -3,13 +3,13 @@ import addToCallQueue from '../src/index'
 describe('addToCallQueue', () => {
   it('calls callbacks in a queue one by one', function(done) {
     const asyncFn1 = jest.fn(() =>
-      new Promise((resolve) => setTimeout(resolve, 700)))
+      new Promise<void>((resolve) => setTimeout(resolve, 700)))
 
     const asyncFn2 = jest.fn(() =>
-      new Promise((resolve) => setTimeout(resolve, 300)))
+      new Promise<void>((resolve) => setTimeout(resolve, 300)))
 
     const asyncFn3 = jest.fn(() =>
-      new Promise((resolve) => setTimeout(resolve, 100)))
+      new Promise<void>((resolve) => setTimeout(resolve, 100)))
 
     addToCallQueue(asyncFn1)
     addToCallQueue(asyncFn2)
@@ -31,13 +31,13 @@ describe('addToCallQueue', () => {
 
   it('allows to add success callbacks', function(done) {
     const asyncFn1 = jest.fn(() =>
-      new Promise((resolve) => setTimeout(resolve, 700)))
+      new Promise<void>((resolve) => setTimeout(resolve, 700)))
 
     const asyncFn2 = jest.fn(() =>
-      new Promise((resolve) => setTimeout(resolve, 300)))
+      new Promise<void>((resolve) => setTimeout(resolve, 300)))
 
     const asyncFn3 = jest.fn(() =>
-      new Promise((resolve) => setTimeout(resolve, 100)))
+      new Promise<void>((resolve) => setTimeout(resolve, 100)))
 
     const asyncFn1After = jest.fn()
     const asyncFn2After = jest.fn()
@@ -60,13 +60,13 @@ describe('addToCallQueue', () => {
 
   it('allows to handle failed callbacks', function(done) {
     const asyncFn1 = jest.fn(() =>
-      new Promise((resolve, reject) => setTimeout(reject, 700)))
+      new Promise<void>((_resolve, reject) => setTimeout(reject, 700)))
 
     const asyncFn2 = jest.fn(() =>
-      new Promise((resolve, reject) => setTimeout(reject, 300)))
+      new Promise<void>((_resolve, reject) => setTimeout(reject, 300)))
 
     const asyncFn3 = jest.fn(() =>
-      new Promise((resolve, reject) => setTimeout(reject, 100)))
+      new Promise<void>((_resolve, reject) => setTimeout(reject, 100)))
 
     const asyncFn1After = jest.fn()
     const asyncFn2After = jest.fn()

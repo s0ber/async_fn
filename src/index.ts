@@ -1,6 +1,6 @@
 let queue = Promise.resolve()
 
-type FnOrPromise = (...args: any[]) => void | Promise<unknown>
+type FnOrPromise = (...args: any[]) => void | Promise<void>
 
 const addToAsyncQueue = (fn: FnOrPromise) =>
   new Promise((resolve, reject) => {
