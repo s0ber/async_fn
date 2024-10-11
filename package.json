@@ -1,6 +1,6 @@
 {
   "name": "async_fn",
-  "version": "1.0.0-rc6",
+  "version": "1.0.0-rc7",
   "author": "Sergey Shishkalov <sergeyshishkalov@gmail.com>",
   "description": "One-function library for calling asynchronous functions one by one in a queue",
   "type": "module",
@@ -22,6 +22,7 @@
     "vite": "^5.4.6",
     "vite-plugin-dts": "^4.2.1"
   },
+  "browserslist": ["defaults"],
   "engine": {
     "node": ">=20"
   },
